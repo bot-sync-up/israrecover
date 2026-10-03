@@ -37,7 +37,7 @@
     <h1 id="h1">איבדת קבצים?<br>לא צריך להבין בשחזור.</h1>
     <p class="lead">IsraRecover שואל מה קרה, בודק את הכונן, אומר לך מה בטוח לעשות עכשיו — ומוביל אותך צעד אחרי צעד עד שהקבצים שמורים בכונן אחר.</p>
     <div class="cta">
-      <a class="btn btn-primary" id="dl-main" href="https://github.com/bot-sync-up/israrecover/releases/latest">הורדה חינם</a>
+      <a class="btn btn-primary" id="dl-main" href="https://github.com/bot-sync-up/israrecover/releases/latest/download/IsraRecover-setup.exe" download>הורדה חינם</a>
       <a class="btn btn-ghost" href="#what">מה קרה לי?</a>
     </div>
     <p class="under">גרסה ניידת שרצה בלי התקנה, או קובץ התקנה רגיל. <a href="#download">כל הקבצים</a></p>
@@ -204,10 +204,10 @@
   <div class="dl">
     <p class="kicker" style="color:#FFD98A">הורדה</p>
     <h2 id="h-dl">חינם, בלי הרשמה, בלי פרסומות</h2>
-    <p class="ver" id="dl-ver">הגרסה האחרונה ב-GitHub</p>
+    <p class="ver" id="dl-ver">הגרסה האחרונה</p>
     <div class="files">
-      <a class="btn btn-primary" id="dl-setup" href="https://github.com/bot-sync-up/israrecover/releases/latest">קובץ התקנה</a>
-      <a class="btn btn-ghost" id="dl-portable" href="https://github.com/bot-sync-up/israrecover/releases/latest">גרסה ניידת (בלי התקנה)</a>
+      <a class="btn btn-primary" id="dl-setup" href="https://github.com/bot-sync-up/israrecover/releases/latest/download/IsraRecover-setup.exe" download>קובץ התקנה</a>
+      <a class="btn btn-ghost" id="dl-portable" href="https://github.com/bot-sync-up/israrecover/releases/latest/download/IsraRecover-portable.exe" download>גרסה ניידת (בלי התקנה)</a>
     </div>
     <p class="req">Windows 10/11 (64 ביט). התוכנה מבקשת הרשאות מנהל כדי לקרוא את הכונן ישירות. לאימות ההורדה מצורף SHA256SUMS.txt.</p>
   </div>
@@ -221,7 +221,8 @@
 </footer>
 </div>
 <script>
-// The download buttons point at the newest release's own files (the public release repo); the page works without this.
+// The buttons download the newest release directly (releases/latest/download/<fixed name>, uploaded by
+// installer/publish-release.py) — no API call needed. This only adds the version and the sizes when the API answers.
 (async function () {
   try {
     const r = await fetch('https://api.github.com/repos/bot-sync-up/israrecover/releases?per_page=3', { headers: { Accept: 'application/vnd.github+json' } });
@@ -232,8 +233,6 @@
     const asset = kind => (rel.assets || []).find(a => a.name.toLowerCase() === `israrecover-${v}-${kind}.exe`.toLowerCase());
     const setup = asset('setup'), portable = asset('portable');
     const mb = a => a ? ' · ' + Math.round(a.size / 1048576) + ' MB' : '';
-    if (setup) { document.getElementById('dl-setup').href = setup.browser_download_url; document.getElementById('dl-main').href = setup.browser_download_url; }
-    if (portable) document.getElementById('dl-portable').href = portable.browser_download_url;
     document.getElementById('dl-ver').textContent = 'גרסה ' + v + (setup ? ' · קובץ התקנה' + mb(setup) : '') + (portable ? ' · נייד' + mb(portable) : '');
   } catch (e) { /* the links to the releases page stay */ }
 })();
