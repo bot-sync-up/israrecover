@@ -140,13 +140,17 @@ section { padding-block: clamp(44px, 7vw, 88px); }
 .rules span { color: var(--muted); font-size: 0.97rem; }
 
 /* technicians */
-.tech { display: grid; gap: 22px; }
-@media (min-width: 64rem) { .tech { grid-template-columns: 1fr 1.4fr; } }
-.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+/* the heading (with the file-system chips) on top and the tools as cards below — like the other sections; side by
+   side, the heading column stretched to the list's height and spread its rows apart */
+.tech .sec-head { align-content: start; }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; margin-block-start: 6px; }
 .chip { background: var(--surface); border: 1px solid var(--line); border-radius: 999px; padding: 6px 12px; font-size: 0.92rem; }
-.tech-list { display: grid; gap: 10px; margin: 0; padding: 0; }
-.tech-list li { list-style: none; padding: 12px 14px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; font-size: 0.97rem; }
-.tech-list b { color: var(--accent-strong); }
+.tech-list { display: grid; grid-template-columns: 1fr; gap: 14px; margin: 0; padding: 0; }
+@media (min-width: 48rem) { .tech-list { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 72rem) { .tech-list { grid-template-columns: repeat(3, 1fr); } }
+.tech-list li { list-style: none; padding: 18px 18px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); color: var(--muted); font-size: 0.97rem; transition: transform 200ms var(--ease-out), border-color 200ms var(--ease-out); }
+@media (hover: hover) and (pointer: fine) { .tech-list li:hover { transform: translateY(-3px); border-color: var(--accent); } }
+.tech-list b { display: block; color: var(--accent-strong); font-size: 1.08rem; margin-block-end: 6px; }
 
 /* lab */
 .lab { border: 1px solid var(--line); border-radius: var(--radius-lg); padding: clamp(24px, 4vw, 44px); background: var(--surface); }
