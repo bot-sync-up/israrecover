@@ -194,3 +194,32 @@ footer a { color: var(--accent-strong); }
 .doc th, .doc td { border: 1px solid var(--line); padding: 7px 10px; text-align: start; vertical-align: top; }
 .doc th { background: var(--surface-2); }
 .doc [dir="ltr"] { text-align: left; }
+.doc :is(h2, h3) { scroll-margin-block-start: 16px; }
+.doc .toc { display: flex; flex-wrap: wrap; gap: 8px; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.doc .toc a { padding: 5px 12px; border-radius: 999px; background: var(--surface-2); color: var(--accent-strong); font-weight: 500; font-size: 0.95rem; text-decoration: none; }
+.doc .toc a:hover { background: var(--accent); color: var(--on-accent); }
+.doc .toc a.sub { font-family: Consolas, "Cascadia Mono", monospace; font-size: 0.88rem; font-weight: 400; background: transparent; border: 1px solid var(--line); }
+.doc table.quick { display: table; }
+.doc table.quick td:first-child { width: 26%; font-weight: 500; }
+.doc table.quick td:last-child { direction: ltr; text-align: left; }
+.doc table.quick td code, .doc .cmd h3 code { white-space: normal; display: inline; line-height: 1.7; }
+.doc table.quick td code { font-size: 0.92rem; }
+.doc code .w { white-space: nowrap; }
+@media (max-width: 640px) {
+  .doc table.quick, .doc table.quick tbody, .doc table.quick tr, .doc table.quick td { display: block; width: auto; border: 0; }
+  .doc table.quick thead { display: none; }
+  .doc table.quick tr { padding: 10px 12px; border-block-end: 1px solid var(--line); }
+  .doc table.quick td { padding: 2px 0; }
+  .doc table.quick td:first-child { width: auto; }
+}
+.doc .cmd { display: grid; gap: 12px; padding: 18px 20px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); }
+.doc .cmd > * { min-width: 0; }
+.doc .cmd h3 { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.doc .cmd h3 code { text-align: left; font-size: 1rem; padding: 6px 12px; display: inline-block; background: var(--accent); color: var(--on-accent); }
+.doc .cmd pre { background: var(--bg); }
+.doc details.json summary { cursor: pointer; width: fit-content; color: var(--accent-strong); font-weight: 500; }
+.doc details.json[open] summary { margin-block-end: 8px; }
+.doc pre { position: relative; }
+.doc .copy { font: inherit; font-size: 0.82rem; padding: 2px 10px; margin-inline-start: 8px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--accent-strong); cursor: pointer; vertical-align: middle; }
+.doc .copy:hover { border-color: var(--accent); }
+.doc pre .copy { position: absolute; inset-block-start: 8px; inset-inline-end: 8px; margin: 0; font-family: var(--font); }
