@@ -223,3 +223,27 @@ footer a { color: var(--accent-strong); }
 .doc .copy { font: inherit; font-size: 0.82rem; padding: 2px 10px; margin-inline-start: 8px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--accent-strong); cursor: pointer; vertical-align: middle; }
 .doc .copy:hover { border-color: var(--accent); }
 .doc pre .copy { position: absolute; inset-block-start: 8px; inset-inline-end: 8px; margin: 0; font-family: var(--font); }
+
+/* the command line: a band on the landing page, the hero of cli.html */
+.cli-band { position: relative; overflow: hidden; display: grid; gap: 32px; align-items: center; padding: clamp(26px, 4.5vw, 56px); border-radius: var(--radius-lg); background: linear-gradient(160deg, var(--hero) 0%, var(--hero-2) 100%); color: var(--hero-text); box-shadow: var(--shadow); }
+@media (min-width: 64rem) { .cli-band { grid-template-columns: 1fr 1.3fr; gap: 40px; } }
+.cli-band > * { min-width: 0; }
+.cli-band .kicker { color: var(--hero-muted); }
+.cli-band h2, .cli-band h1 { color: #fff; margin-block: 10px 12px; }
+.cli-band h1 { font-size: clamp(1.9rem, 1.4rem + 1.8vw, 2.6rem); }
+.cli-lead { font-size: clamp(1.05rem, 1rem + 0.3vw, 1.22rem); max-width: 40ch; }
+.cli-points { list-style: none; margin: 20px 0 0; padding: 0; display: grid; gap: 12px; }
+.cli-points li { padding-inline-start: 16px; border-inline-start: 3px solid var(--amber); color: var(--hero-muted); font-size: 0.98rem; }
+.cli-points b { display: block; color: #fff; }
+.cli-band .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-block-start: 26px; }
+.cli-hero { margin-block: 8px 28px; }
+.cli-hero + .doc { margin-inline: auto; } /* the reading column centred under the wide band */
+.term { margin: 0; border-radius: 14px; overflow: hidden; background: #08171A; border: 1px solid rgba(255, 255, 255, 0.14); box-shadow: 0 28px 60px rgba(0, 0, 0, 0.35); direction: ltr; text-align: left; }
+.term-bar { display: flex; align-items: center; gap: 7px; padding: 10px 14px; background: rgba(255, 255, 255, 0.06); }
+.term-bar i { width: 11px; height: 11px; border-radius: 50%; background: rgba(255, 255, 255, 0.22); }
+.term-bar span { margin-inline-start: 8px; color: #8FB3B6; font-size: 0.8rem; font-family: Consolas, "Cascadia Mono", monospace; }
+.term pre { margin: 0; padding: 16px 18px 20px; overflow-x: auto; color: #D7EEEE; font: 0.84rem/1.6 Consolas, "Cascadia Mono", monospace; }
+.term .t-p { color: #8FB3B6; }
+.term .t-k { color: #7ED2D8; }
+.term .t-s { color: #FFD98A; }
+.term .t-v { color: #F6B655; }
