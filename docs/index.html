@@ -13,7 +13,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap">
-<link rel="stylesheet" href="site.css?v=8c12f20c97">
+<link rel="stylesheet" href="site.css?v=c41b1c0954">
 </head>
 <body>
 <a class="skip" href="#main">דלג לתוכן</a>
@@ -25,6 +25,7 @@
     <a href="#how">איך זה עובד</a>
     <a href="#safe">בטיחות</a>
     <a href="#tech">לטכנאים</a>
+    <a href="cli.html">שורת פקודה</a>
     <a href="#faq">שאלות</a>
     <a href="#download">הורדה</a>
   </nav>
@@ -171,6 +172,39 @@
       <li><b>גרסה ניידת</b>קובץ אחד שרץ בלי התקנה על המחשב של הלקוח; דוח טכני להעתקה; קהילה בפורום מתמחים.</li>
       <li><b>שורת פקודה</b>בדיקה, סריקה, שחזור ורופא קבצים בלי חלון, עם תשובה ב-JSON — לסקריפטים ולסוכני AI. <a href="cli.html">ההסבר המלא</a></li>
     </ul>
+  </div>
+</section>
+
+<section id="cli" aria-labelledby="h-cli">
+  <div class="cli-band">
+    <div>
+      <p class="kicker">לטכנאים, לסקריפטים ולסוכני AI</p>
+      <h2 id="h-cli">גם משורת הפקודה</h2>
+      <p class="cli-lead">כל מה שהתוכנה עושה בחלון — בדיקה, סריקה, שחזור ורופא קבצים — אפשר להריץ גם בלי חלון.</p>
+      <ul class="cli-points">
+      <li><b>תשובה אחת ב-JSON</b>וקוד יציאה קבוע לכל מצב — סקריפט או סוכן AI יודעים בדיוק מה קרה ולמה.</li>
+      <li><b>רק קוראת מהמקור</b>יעד על הכונן שנסרק נחסם, בדיוק כמו בחלון.</li>
+      <li><b>אותו מנוע כמו בחלון</b>בדיקת כונן, סריקה, שחזור עם SHA-256 ורופא קבצים.</li>
+    </ul>
+      <div class="cta">
+        <a class="btn btn-primary" href="cli.html">איך כותבים — פקודות מוכנות</a>
+      </div>
+    </div>
+    <figure class="term" aria-label="דוגמה: סריקה משורת הפקודה והתשובה ב-JSON">
+  <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>cmd</span></div>
+<pre><span class="t-p">&gt;</span> cmd /c IsraRecover.exe cli scan E: --json
+{
+  <span class="t-k">"ok"</span>: <span class="t-v">true</span>,
+  <span class="t-k">"command"</span>: <span class="t-s">"scan"</span>,
+  <span class="t-k">"exitCode"</span>: <span class="t-v">0</span>,
+  <span class="t-k">"summary"</span>: {
+    <span class="t-k">"files"</span>: <span class="t-v">1284</span>,
+    <span class="t-k">"byStatus"</span>: { <span class="t-k">"intact"</span>: <span class="t-v">1190</span>, <span class="t-k">"partial"</span>: <span class="t-v">61</span>, <span class="t-k">"overwritten"</span>: <span class="t-v">33</span> },
+    <span class="t-k">"byState"</span>: { <span class="t-k">"existing"</span>: <span class="t-v">902</span>, <span class="t-k">"deleted"</span>: <span class="t-v">371</span>, <span class="t-k">"carved"</span>: <span class="t-v">11</span> }
+  },
+  <span class="t-k">"warnings"</span>: []
+}</pre>
+</figure>
   </div>
 </section>
 
