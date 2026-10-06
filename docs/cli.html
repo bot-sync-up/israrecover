@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap">
-<link rel="stylesheet" href="site.css?v=8c12f20c97">
+<link rel="stylesheet" href="site.css?v=c41b1c0954">
 </head>
 <body>
 <a class="skip" href="#main">דלג לתוכן</a>
@@ -22,14 +22,41 @@
     <a href="./#download">הורדה</a>
   </nav>
 </header>
-<main id="main" class="doc">
-<p class="kicker">לטכנאים ולסוכני AI</p>
-<h1>IsraRecover משורת הפקודה (CLI)</h1>
-<p><code>IsraRecover.exe cli &lt;command&gt; [options]</code> מריץ את הבדיקה, הסריקה, השחזור ורופא הקבצים של התוכנה <strong>בלי חלון</strong>.
-הוא נבנה כדי שסקריפט או סוכן AI יוכלו להפעיל את התוכנה, לקרוא את הפלט ולהבין למה משהו נכשל: הפלט קריא למכונה
-(JSON אחד), יציב ומתועד כאן, וקודי היציאה קבועים.</p>
-<p>ה-CLI משתמש באותו קוד בדיוק כמו החלון: אותה בדיקת כונן, אותו מנוע סריקה, אותו שחזור (אותן תיקיות ואותו דוח CSV
-עם SHA-256), אותו רופא קבצים — ואותה <strong>חסימה של שחזור לכונן שנסרק</strong>.</p>
+<main id="main">
+<section class="cli-band cli-hero" aria-labelledby="h1">
+  <div>
+    <p class="kicker">לטכנאים, לסקריפטים ולסוכני AI</p>
+    <h1 id="h1">IsraRecover משורת הפקודה (CLI)</h1>
+    <p class="cli-lead">הבדיקה, הסריקה, השחזור ורופא הקבצים של התוכנה — בלי חלון.</p>
+    <ul class="cli-points">
+      <li><b>תשובה אחת ב-JSON</b>וקוד יציאה קבוע לכל מצב — סקריפט או סוכן AI יודעים בדיוק מה קרה ולמה.</li>
+      <li><b>רק קוראת מהמקור</b>יעד על הכונן שנסרק נחסם, בדיוק כמו בחלון.</li>
+      <li><b>אותו מנוע כמו בחלון</b>בדיקת כונן, סריקה, שחזור עם SHA-256 ורופא קבצים.</li>
+    </ul>
+    <div class="cta">
+      <a class="btn btn-primary" href="#s1">התחלה מהירה</a>
+      <a class="btn btn-ghost" href="./#download">הורדת התוכנה</a>
+    </div>
+  </div>
+  <figure class="term" aria-label="דוגמה: סריקה משורת הפקודה והתשובה ב-JSON">
+  <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>cmd</span></div>
+<pre><span class="t-p">&gt;</span> cmd /c IsraRecover.exe cli scan E: --json
+{
+  <span class="t-k">"ok"</span>: <span class="t-v">true</span>,
+  <span class="t-k">"command"</span>: <span class="t-s">"scan"</span>,
+  <span class="t-k">"exitCode"</span>: <span class="t-v">0</span>,
+  <span class="t-k">"summary"</span>: {
+    <span class="t-k">"files"</span>: <span class="t-v">1284</span>,
+    <span class="t-k">"byStatus"</span>: { <span class="t-k">"intact"</span>: <span class="t-v">1190</span>, <span class="t-k">"partial"</span>: <span class="t-v">61</span>, <span class="t-k">"overwritten"</span>: <span class="t-v">33</span> },
+    <span class="t-k">"byState"</span>: { <span class="t-k">"existing"</span>: <span class="t-v">902</span>, <span class="t-k">"deleted"</span>: <span class="t-v">371</span>, <span class="t-k">"carved"</span>: <span class="t-v">11</span> }
+  },
+  <span class="t-k">"warnings"</span>: []
+}</pre>
+</figure>
+</section>
+<div class="doc">
+
+
 <nav aria-label="בדף הזה" class="toc"><a href="#s1">התחלה מהירה</a><a href="#s2">הבטחות</a><a href="#s3">איך סוכן AI משתמש בזה</a><a href="#s4">קודי יציאה</a><a href="#s5">מבנה התשובה</a><a href="#s6">הפקודות</a><a class="sub" dir="ltr" href="#cmd-version">version</a><a class="sub" dir="ltr" href="#cmd-drives">drives</a><a class="sub" dir="ltr" href="#cmd-check">check</a><a class="sub" dir="ltr" href="#cmd-scan">scan</a><a class="sub" dir="ltr" href="#cmd-recover">recover</a><a class="sub" dir="ltr" href="#cmd-doctor">doctor</a><a href="#s7">הרשאות מנהל</a><a href="#s8">For AI tools (English summary)</a></nav><h2 id="s1">התחלה מהירה</h2>
 <p><strong>1. פותחים חלון cmd.</strong> בתפריט «התחל» מקלידים <code>cmd</code>. כדי לסרוק כונן לפי אות צריך הרשאות מנהל: לוחצים על
 «שורת הפקודה» בכפתור הימני ← «הפעל כמנהל».</p>
@@ -302,6 +329,7 @@ subprocess APIs that redirect stdout wait for it and get the exit code.</p></div
 
 
 
+</div>
 </main>
 <footer>
   <p><b>IsraRecover</b> מבית Sync Up · <a href="./">דף הבית</a> · <a href="https://github.com/bot-sync-up/israrecover/releases" rel="noopener">כל הגרסאות</a></p>
