@@ -1,0 +1,7 @@
+# IsraRecover
+
+> Free file-recovery program for Windows (Hebrew and English), with a command line for scripts and AI agents.
+
+- [Command-line guide for AI agents](https://israrecover.syncup.co.il/ai.md): install, commands, exit codes, safety rules
+- [Command line, Hebrew page](https://israrecover.syncup.co.il/cli.html)
+- [Download (latest)](https://github.com/bot-sync-up/israrecover/releases/latest)
