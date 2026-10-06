@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap">
-<link rel="stylesheet" href="site.css?v=2f9b297d05">
+<link rel="stylesheet" href="site.css?v=8c12f20c97">
 </head>
 <body>
 <a class="skip" href="#main">דלג לתוכן</a>
@@ -30,7 +30,56 @@
 (JSON אחד), יציב ומתועד כאן, וקודי היציאה קבועים.</p>
 <p>ה-CLI משתמש באותו קוד בדיוק כמו החלון: אותה בדיקת כונן, אותו מנוע סריקה, אותו שחזור (אותן תיקיות ואותו דוח CSV
 עם SHA-256), אותו רופא קבצים — ואותה <strong>חסימה של שחזור לכונן שנסרק</strong>.</p>
-<h2>הבטחות</h2>
+<nav aria-label="בדף הזה" class="toc"><a href="#s1">התחלה מהירה</a><a href="#s2">הבטחות</a><a href="#s3">איך סוכן AI משתמש בזה</a><a href="#s4">קודי יציאה</a><a href="#s5">מבנה התשובה</a><a href="#s6">הפקודות</a><a class="sub" dir="ltr" href="#cmd-version">version</a><a class="sub" dir="ltr" href="#cmd-drives">drives</a><a class="sub" dir="ltr" href="#cmd-check">check</a><a class="sub" dir="ltr" href="#cmd-scan">scan</a><a class="sub" dir="ltr" href="#cmd-recover">recover</a><a class="sub" dir="ltr" href="#cmd-doctor">doctor</a><a href="#s7">הרשאות מנהל</a><a href="#s8">For AI tools (English summary)</a></nav><h2 id="s1">התחלה מהירה</h2>
+<p><strong>1. פותחים חלון cmd.</strong> בתפריט «התחל» מקלידים <code>cmd</code>. כדי לסרוק כונן לפי אות צריך הרשאות מנהל: לוחצים על
+«שורת הפקודה» בכפתור הימני ← «הפעל כמנהל».</p>
+<p><strong>2. נכנסים לתיקייה של התוכנה:</strong></p>
+<pre><code>cd "C:\Program Files\IsraRecover"
+</code></pre>
+<p>בגרסה הניידת נכנסים לתיקייה שבה שמרתם את הקובץ, ובפקודות כותבים את השם שלו (למשל <code>IsraRecover-portable.exe</code>)
+במקום <code>IsraRecover.exe</code>.</p>
+<p><strong>3. כותבים פקודה.</strong> המבנה תמיד זהה: <code>cmd /c</code>, שם התוכנה, המילה <code>cli</code>, הפקודה ואחריה האפשרויות.</p>
+<table class="quick">
+<thead>
+<tr>
+<th>רוצים</th>
+<th>כותבים</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>לראות אילו כוננים יש</td>
+<td><code><span class="w">cmd</span> <span class="w">/c</span> <span class="w">IsraRecover.exe</span> <span class="w">cli</span> <span class="w">drives</span></code></td>
+</tr>
+<tr>
+<td>לבדוק את כונן E</td>
+<td><code><span class="w">cmd</span> <span class="w">/c</span> <span class="w">IsraRecover.exe</span> <span class="w">cli</span> <span class="w">check</span> <span class="w">E:</span></code></td>
+</tr>
+<tr>
+<td>לסרוק את E ולשמור את הסריקה</td>
+<td><code><span class="w">cmd</span> <span class="w">/c</span> <span class="w">IsraRecover.exe</span> <span class="w">cli</span> <span class="w">scan</span> <span class="w">E:</span> <span class="w">--save</span> <span class="w">D:\scans\e.rscan</span></code></td>
+</tr>
+<tr>
+<td>לראות מה ישוחזר, בלי לשחזר</td>
+<td><code><span class="w">cmd</span> <span class="w">/c</span> <span class="w">IsraRecover.exe</span> <span class="w">cli</span> <span class="w">recover</span> <span class="w">D:\scans\e.rscan</span> <span class="w">--to</span> <span class="w">D:\recovered</span> <span class="w">--dry-run</span></code></td>
+</tr>
+<tr>
+<td>לשחזר רק תמונות</td>
+<td><code><span class="w">cmd</span> <span class="w">/c</span> <span class="w">IsraRecover.exe</span> <span class="w">cli</span> <span class="w">recover</span> <span class="w">D:\scans\e.rscan</span> <span class="w">--to</span> <span class="w">D:\recovered</span> <span class="w">--type</span> <span class="w">jpg,png</span></code></td>
+</tr>
+<tr>
+<td>לבדוק קובץ פגום ולתקן אותו</td>
+<td><code><span class="w">cmd</span> <span class="w">/c</span> <span class="w">IsraRecover.exe</span> <span class="w">cli</span> <span class="w">doctor</span> <span class="w">D:\song.mp3</span> <span class="w">--repair</span> <span class="w">--to</span> <span class="w">D:\fixed</span></code></td>
+</tr>
+<tr>
+<td>עזרה על פקודה</td>
+<td><code><span class="w">cmd</span> <span class="w">/c</span> <span class="w">IsraRecover.exe</span> <span class="w">cli</span> <span class="w">help</span> <span class="w">scan</span></code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>למה צריך את <code>cmd /c</code>.</strong> ל-IsraRecover יש גם חלון, ולכן חלון cmd לא מחכה לה. בלי <code>cmd /c</code> שורת הפקודה חוזרת לפני
+שהתשובה מגיעה. בסקריפט, ב-Git Bash ובסוכן AI אין צורך בזה (הפירוט למטה), ומוסיפים <code>--json</code> כדי לקבל את התשובה כ-JSON.</p>
+<h2 id="s2">הבטחות</h2>
 <ul>
 <li><strong>קריאה בלבד מהמקור.</strong> ה-CLI לא כותב אף פעם לכונן או לקובץ התמונה שנסרקים. הוא כותב רק ליעדים שנתתם:
   <code>--to</code>, <code>--save</code>, <code>--list</code>. יעד שנמצא על הכונן שנסרק (או שהוא קובץ התמונה עצמו) נחסם — קוד יציאה 4.</li>
@@ -40,7 +89,7 @@
   הקוד <code>needs_admin</code> (יציאה 4) ולא מבקשת UAC בעצמה. קובצי תמונה וסריקות שמורות עובדים בלי הרשאות מנהל.</li>
 <li><strong>בלי ההגדרות של המשתמש.</strong> ה-CLI לא קורא ולא כותב את הגדרות התוכנה. הפלט שלו באנגלית.</li>
 </ul>
-<h2>איך סוכן AI משתמש בזה</h2>
+<h2 id="s3">איך סוכן AI משתמש בזה</h2>
 <ol>
 <li>מריצים עם <code>--json</code>. ב-stdout יוצא <strong>מסמך JSON אחד בדיוק</strong>; ההתקדמות והאזהרות יוצאות ל-stderr.</li>
 <li>בודקים את קוד היציאה (הטבלה למטה) ואת <code>ok</code>. כשיש תקלה יש <code>error.code</code> (מילה קבועה) ו-<code>error.message</code> (משפט באנגלית).</li>
@@ -85,7 +134,7 @@
 </table>
 <p>הפלט ל-stdout ול-stderr הוא UTF-8 בלי BOM כשהוא מנותב לקובץ או לצינור, ויוניקוד ישיר כשהוא מוצג בקונסולה.
 Ctrl+C עוצר את הסריקה או השחזור בצורה מסודרת: התשובה עדיין נכתבת, <code>cancelled: true</code>, וקוד היציאה 5.</p>
-<h2>קודי יציאה</h2>
+<h2 id="s4">קודי יציאה</h2>
 <table>
 <thead>
 <tr>
@@ -130,47 +179,47 @@ Ctrl+C עוצר את הסריקה או השחזור בצורה מסודרת: ה�
 <p><strong>קודי שגיאה</strong> (<code>error.code</code>): <code>usage</code>, <code>bad_source</code>, <code>source_not_found</code>, <code>open_failed</code>, <code>needs_admin</code>,
 <code>destination_on_source</code>, <code>low_space</code>, <code>destination_failed</code>, <code>image_first</code>, <code>lab</code>, <code>bitlocker</code>, <code>cancelled</code>,
 <code>failed</code> (תקלה לא צפויה — ההודעה כוללת את סוג החריגה).</p>
-<h2>מבנה התשובה</h2>
+<h2 id="s5">מבנה התשובה</h2>
 <p>כל תשובה היא אובייקט אחד. מפתחות קבועים, camelCase. מפתחות חדשים יכולים להתווסף; שינוי שם או הסרה של מפתח
 יעלו את <code>formatVersion</code> (שמופיע ב-<code>cli version</code>).</p>
-<pre><code class="language-json">{ &quot;ok&quot;: true, &quot;command&quot;: &quot;scan&quot;, &quot;exitCode&quot;: 0, &quot;...&quot;: &quot;השדות של הפקודה&quot;, &quot;warnings&quot;: [] }
-{ &quot;ok&quot;: false, &quot;command&quot;: &quot;scan&quot;, &quot;exitCode&quot;: 2, &quot;error&quot;: { &quot;code&quot;: &quot;source_not_found&quot;, &quot;message&quot;: &quot;No such file: D:\\x.img&quot; }, &quot;warnings&quot;: [] }
+<pre><code class="language-json">{ "ok": true, "command": "scan", "exitCode": 0, "...": "השדות של הפקודה", "warnings": [] }
+{ "ok": false, "command": "scan", "exitCode": 2, "error": { "code": "source_not_found", "message": "No such file: D:\\x.img" }, "warnings": [] }
 </code></pre>
 <p><code>ok</code> הוא <code>false</code> רק כשיש <code>error</code>. בקוד 3 ו-5 התשובה הרגילה מגיעה עם <code>ok: true</code> — קוד היציאה אומר את השאר.</p>
 <p><strong>מקור</strong> (<code>&lt;source&gt;</code>): אות כונן (<code>E:</code> — המחיצה הזאת בלבד), דיסק פיזי (<code>disk:2</code> או <code>\\.\PhysicalDrive2</code> — כל
 הדיסק), קובץ תמונה (IMG, VHD, VHDX, VMDK, E01 וכל מה שהמנוע פותח), או סריקה שמורה <code>.rscan</code> (רק ב-<code>recover</code>).</p>
-<h2>הפקודות</h2>
-<h3><code>cli version</code> · <code>cli help [command]</code></h3>
+<h2 id="s6">הפקודות</h2>
+<section class="cmd"><h3 id="cmd-version"><code><span class="w">cli</span> <span class="w">version</span></code> · <code><span class="w">cli</span> <span class="w">help</span> <span class="w">[command]</span></code></h3>
 <p>גרסת התוכנה וגרסת פורמט ה-JSON; רשימת הפקודות, האפשרויות, קודי היציאה וההבטחות (גם ב-<code>--json</code>).</p>
-<pre><code class="language-json">{ &quot;ok&quot;: true, &quot;command&quot;: &quot;version&quot;, &quot;exitCode&quot;: 0, &quot;name&quot;: &quot;IsraRecover&quot;, &quot;version&quot;: &quot;1.0.1&quot;, &quot;formatVersion&quot;: 1, &quot;isAdmin&quot;: false, &quot;warnings&quot;: [] }
-</code></pre>
-<h3><code>cli drives</code></h3>
+<details class="json"><summary>דוגמת תשובה ב-JSON</summary><pre><code class="language-json">{ "ok": true, "command": "version", "exitCode": 0, "name": "IsraRecover", "version": "1.0.1", "formatVersion": 1, "isAdmin": false, "warnings": [] }
+</code></pre></details>
+</section><section class="cmd"><h3 id="cmd-drives"><code><span class="w">cli</span> <span class="w">drives</span></code></h3>
 <p>מה שמסך הבית מראה: כל דיסק פיזי, הסוג (<code>sd</code>, <code>stick</code>, <code>external</code>, <code>ssd</code>, <code>virtual</code>, <code>hdd</code>), החיבור, הגודל, בריאות
 SMART (<code>good</code>, <code>warning</code>, <code>bad</code>, <code>notAvailable</code> — בלי הרשאות מנהל לרוב לא זמין), והמצב במילה אחת כמו בשורת הכונן
 (<code>system</code>, <code>smartBad</code>, <code>smartWarning</code>, <code>noLetter</code>, <code>raw</code>, <code>ok</code>). לכל מחיצה: אות, מערכת קבצים, גודל ומקום פנוי.
 קריאה בלבד, בלי הרשאות מנהל.</p>
-<pre><code class="language-json">{ &quot;ok&quot;: true, &quot;command&quot;: &quot;drives&quot;, &quot;exitCode&quot;: 0, &quot;isAdmin&quot;: false,
-  &quot;disks&quot;: [ { &quot;number&quot;: 1, &quot;id&quot;: &quot;disk:1&quot;, &quot;name&quot;: &quot;SanDisk Ultra&quot;, &quot;size&quot;: 63864569856, &quot;sizeText&quot;: &quot;59.48 GB&quot;,
-               &quot;bus&quot;: &quot;usb&quot;, &quot;kind&quot;: &quot;stick&quot;, &quot;removable&quot;: true, &quot;isSystemDisk&quot;: false, &quot;partitionStyle&quot;: &quot;mbr&quot;,
-               &quot;isSsd&quot;: null, &quot;trim&quot;: null, &quot;health&quot;: &quot;notAvailable&quot;, &quot;healthText&quot;: &quot;...&quot;, &quot;state&quot;: &quot;ok&quot;,
-               &quot;partitions&quot;: [ { &quot;offset&quot;: 1048576, &quot;length&quot;: 63863521280, &quot;letter&quot;: &quot;E:&quot;, &quot;label&quot;: &quot;CARD&quot;,
-                                 &quot;fileSystem&quot;: &quot;exFAT&quot;, &quot;sizeText&quot;: &quot;59.48 GB&quot;, &quot;total&quot;: 63847792640, &quot;free&quot;: 1234567168 } ] } ],
-  &quot;warnings&quot;: [] }
-</code></pre>
-<h3><code>cli check &lt;source&gt; [--situation deleted|formatted|noisy|unsure]</code></h3>
+<details class="json"><summary>דוגמת תשובה ב-JSON</summary><pre><code class="language-json">{ "ok": true, "command": "drives", "exitCode": 0, "isAdmin": false,
+  "disks": [ { "number": 1, "id": "disk:1", "name": "SanDisk Ultra", "size": 63864569856, "sizeText": "59.48 GB",
+               "bus": "usb", "kind": "stick", "removable": true, "isSystemDisk": false, "partitionStyle": "mbr",
+               "isSsd": null, "trim": null, "health": "notAvailable", "healthText": "...", "state": "ok",
+               "partitions": [ { "offset": 1048576, "length": 63863521280, "letter": "E:", "label": "CARD",
+                                 "fileSystem": "exFAT", "sizeText": "59.48 GB", "total": 63847792640, "free": 1234567168 } ] } ],
+  "warnings": [] }
+</code></pre></details>
+</section><section class="cmd"><h3 id="cmd-check"><code><span class="w">cli</span> <span class="w">check</span> <span class="w">&lt;source&gt;</span> <span class="w">[--situation</span> <span class="w">deleted|formatted|noisy|unsure]</span></code></h3>
 <p>«בדיקת הכונן» — אותם ארבעה שלבים (<code>open</code>, <code>health</code>, <code>structure</code>, <code>history</code>), כל אחד עם <code>state</code>
 (<code>ok</code>, <code>warn</code>, <code>bad</code>, <code>skipped</code>) ומשפט, ואחריהם ההחלטה: <code>action</code> (<code>quick</code>, <code>deep</code>, <code>fixed</code>, <code>image</code>, <code>lab</code>,
 <code>bitlocker</code>), הסיבה, <code>mode</code> של הסריקה המתוכננת והמלצה במשפט. <code>--situation</code> הוא התשובה ל«מה קרה?» ומשנה את
 ההחלטה כמו במסך. <code>fixed</code> = סקטור אתחול פגום עם גיבוי תקין: הסריקה תקרא את הכונן דרך הגיבוי (בזיכרון, בלי לכתוב).</p>
-<pre><code class="language-json">{ &quot;ok&quot;: true, &quot;command&quot;: &quot;check&quot;, &quot;exitCode&quot;: 0, &quot;source&quot;: { &quot;text&quot;: &quot;card.img&quot;, &quot;kind&quot;: &quot;image&quot; },
-  &quot;action&quot;: &quot;deep&quot;, &quot;reason&quot;: &quot;formatted&quot;, &quot;recommendation&quot;: &quot;Run a deep scan: 'cli scan &lt;source&gt; --mode deep'.&quot;,
-  &quot;scanNow&quot;: true, &quot;mode&quot;: &quot;deep&quot;, &quot;findLostPartitions&quot;: true, &quot;throughBootBackup&quot;: false, &quot;ssdTrimWarning&quot;: false,
-  &quot;steps&quot;: [ { &quot;id&quot;: &quot;open&quot;, &quot;state&quot;: &quot;ok&quot;, &quot;text&quot;: &quot;The drive reads — 128 MB&quot; },
-             { &quot;id&quot;: &quot;history&quot;, &quot;state&quot;: &quot;warn&quot;, &quot;text&quot;: &quot;The drive was formatted on 2026-09-22 01:50&quot; } ],
-  &quot;facts&quot;: { &quot;isSsd&quot;: null, &quot;trim&quot;: false, &quot;smart&quot;: null, &quot;raw&quot;: false, &quot;readErrors&quot;: false, &quot;slow&quot;: false, &quot;...&quot;: &quot;...&quot; },
-  &quot;lines&quot;: [ &quot;The drive reads, its size is right and its structure is recognized.&quot; ], &quot;fixedPartitions&quot;: null, &quot;warnings&quot;: [] }
-</code></pre>
-<h3><code>cli scan &lt;source&gt; [--mode auto|quick|deep|signatures] [--save x.rscan] [--list x.json|x.csv]</code></h3>
+<details class="json"><summary>דוגמת תשובה ב-JSON</summary><pre><code class="language-json">{ "ok": true, "command": "check", "exitCode": 0, "source": { "text": "card.img", "kind": "image" },
+  "action": "deep", "reason": "formatted", "recommendation": "Run a deep scan: 'cli scan &lt;source&gt; --mode deep'.",
+  "scanNow": true, "mode": "deep", "findLostPartitions": true, "throughBootBackup": false, "ssdTrimWarning": false,
+  "steps": [ { "id": "open", "state": "ok", "text": "The drive reads — 128 MB" },
+             { "id": "history", "state": "warn", "text": "The drive was formatted on 2026-09-22 01:50" } ],
+  "facts": { "isSsd": null, "trim": false, "smart": null, "raw": false, "readErrors": false, "slow": false, "...": "..." },
+  "lines": [ "The drive reads, its size is right and its structure is recognized." ], "fixedPartitions": null, "warnings": [] }
+</code></pre></details>
+</section><section class="cmd"><h3 id="cmd-scan"><code><span class="w">cli</span> <span class="w">scan</span> <span class="w">&lt;source&gt;</span> <span class="w">[--mode</span> <span class="w">auto|quick|deep|signatures]</span> <span class="w">[--save</span> <span class="w">x.rscan]</span> <span class="w">[--list</span> <span class="w">x.json|x.csv]</span></code></h3>
 <p>הסריקה של התוכנה. <code>auto</code> (ברירת המחדל) מריץ קודם את הבדיקה ועושה מה שהיא החליטה; כונן חלש (<code>image_first</code>),
 תקלת חומרה (<code>lab</code>) או BitLocker נעול (<code>bitlocker</code>) נחסמים ביציאה 4 — עם <code>--mode quick|deep</code> סורקים בכל זאת.
 <code>quick</code> = מערכות הקבצים בלבד; <code>deep</code> = כל הכונן: מערכות קבצים, חתימות ומחיצות שאבדו; <code>signatures</code> = «לפי סוג
@@ -178,23 +227,23 @@ SMART (<code>good</code>, <code>warning</code>, <code>bad</code>, <code>notAvail
 <p>הסטטוס של כל קובץ הוא המילה של מסך התוצאות: <code>intact</code> (תקין), <code>partial</code> (חלקי), <code>overwritten</code> (נדרס),
 <code>notChecked</code> (לא נבדק). <code>deleted</code> = כל קובץ שכבר לא קיים בכונן (נמחק, אבד, או נמצא לפי חתימה).
 <code>--save</code> כותב סריקה שמורה שהחלון פותח ו-<code>recover</code> מקבל. <code>--list</code> כותב את כל הקבצים (CSV עם BOM, או JSON).</p>
-<pre><code class="language-json">{ &quot;ok&quot;: true, &quot;command&quot;: &quot;scan&quot;, &quot;exitCode&quot;: 0,
-  &quot;source&quot;: { &quot;text&quot;: &quot;card.img&quot;, &quot;kind&quot;: &quot;image&quot;, &quot;name&quot;: &quot;card.img&quot;, &quot;size&quot;: 134217728 },
-  &quot;mode&quot;: &quot;quick&quot;, &quot;plan&quot;: null, &quot;throughBootBackup&quot;: false, &quot;findLostPartitions&quot;: false,
-  &quot;complete&quot;: true, &quot;cancelled&quot;: false, &quot;disconnected&quot;: false, &quot;canResume&quot;: false, &quot;badSectors&quot;: 0, &quot;elapsedSeconds&quot;: 0.4,
-  &quot;volumes&quot;: [ { &quot;root&quot;: &quot;Partition 1 (NTFS, DATA)&quot;, &quot;fileSystem&quot;: &quot;NTFS&quot;, &quot;offset&quot;: 65536, &quot;length&quot;: 134086656, &quot;label&quot;: &quot;DATA&quot;, &quot;lost&quot;: false } ],
-  &quot;summary&quot;: { &quot;files&quot;: 12, &quot;bytes&quot;: 2596198, &quot;bytesText&quot;: &quot;2.48 MB&quot;,
-               &quot;byStatus&quot;: { &quot;intact&quot;: 12, &quot;partial&quot;: 0, &quot;overwritten&quot;: 0, &quot;notChecked&quot;: 0 },
-               &quot;byState&quot;: { &quot;existing&quot;: 8, &quot;deleted&quot;: 4, &quot;lost&quot;: 0, &quot;carved&quot;: 0 },
-               &quot;withName&quot;: 12, &quot;deleted&quot;: 4, &quot;nameOnly&quot;: 0, &quot;byCategory&quot;: { &quot;document&quot;: 3, &quot;image&quot;: 3, &quot;...&quot;: 0 } },
-  &quot;savedTo&quot;: &quot;D:\scans\card.rscan&quot;, &quot;listTo&quot;: null, &quot;warnings&quot;: [] }
-</code></pre>
+<details class="json"><summary>דוגמת תשובה ב-JSON</summary><pre><code class="language-json">{ "ok": true, "command": "scan", "exitCode": 0,
+  "source": { "text": "card.img", "kind": "image", "name": "card.img", "size": 134217728 },
+  "mode": "quick", "plan": null, "throughBootBackup": false, "findLostPartitions": false,
+  "complete": true, "cancelled": false, "disconnected": false, "canResume": false, "badSectors": 0, "elapsedSeconds": 0.4,
+  "volumes": [ { "root": "Partition 1 (NTFS, DATA)", "fileSystem": "NTFS", "offset": 65536, "length": 134086656, "label": "DATA", "lost": false } ],
+  "summary": { "files": 12, "bytes": 2596198, "bytesText": "2.48 MB",
+               "byStatus": { "intact": 12, "partial": 0, "overwritten": 0, "notChecked": 0 },
+               "byState": { "existing": 8, "deleted": 4, "lost": 0, "carved": 0 },
+               "withName": 12, "deleted": 4, "nameOnly": 0, "byCategory": { "document": 3, "image": 3, "...": 0 } },
+  "savedTo": "D:\\scans\\card.rscan", "listTo": null, "warnings": [] }
+</code></pre></details>
 <p><strong>שורת קובץ</strong> (ב-<code>--list</code>, ב-<code>recover --dry-run</code>): <code>id</code>, <code>path</code> (תיקייה\שם כמו בחלון; הקטע הראשון הוא המחיצה או
 «Found by content»), <code>folder</code>, <code>name</code>, <code>size</code>, <code>type</code> (סיומת), <code>category</code>, <code>status</code>, <code>state</code>
 (<code>existing</code>/<code>deleted</code>/<code>lost</code>/<code>carved</code>), <code>deleted</code>, <code>startOffset</code> (הבית הראשון במקור; ‎-1 כשהנתונים בתוך הרשומה
 עצמה או לא ידועים), <code>modified</code>, <code>created</code>, <code>deletedTime</code> (ISO 8601, שעון מקומי, או null), <code>confidence</code> (0–100),
 <code>origin</code>, <code>nameOnly</code>.</p>
-<h3><code>cli recover &lt;source|x.rscan&gt; --to &lt;folder&gt; [--include glob] [--type jpg,docx] [--status ...] [--deleted-only] [--dry-run]</code></h3>
+</section><section class="cmd"><h3 id="cmd-recover"><code><span class="w">cli</span> <span class="w">recover</span> <span class="w">&lt;source|x.rscan&gt;</span> <span class="w">--to</span> <span class="w">&lt;folder&gt;</span> <span class="w">[--include</span> <span class="w">glob]</span> <span class="w">[--type</span> <span class="w">jpg,docx]</span> <span class="w">[--status</span> <span class="w">...]</span> <span class="w">[--deleted-only]</span> <span class="w">[--dry-run]</span></code></h3>
 <p>השחזור של התוכנה: אותן תיקיות, קבצים חלקיים בתיקייה נפרדת, «דוח שחזור» ו-CSV עם SHA-256 לכל קובץ (<code>csvPath</code>).
 מקור (כונן או תמונה) נסרק קודם (<code>--mode</code>, ברירת מחדל <code>auto</code>); סריקה שמורה <code>.rscan</code> נלקחת כמו שהיא, והמקור שלה
 נפתח מחדש (אותה תמונה, או דיסק עם אותו דגם וגודל). אם המקור חסר — <code>--dry-run</code> עדיין מציג את הרשימה, שחזור לא.</p>
@@ -207,56 +256,71 @@ SMART (<code>good</code>, <code>warning</code>, <code>bad</code>, <code>notAvail
 <li><code>--dry-run</code>: רשימת הקבצים (<code>files</code>, שורות קובץ), בלי לכתוב כלום. <code>--to</code> לא חובה, ואם ניתן — נבדק.</li>
 <li>יציאה 0 רק אם הכול נכתב; קובץ שנכשל, קובץ שכולו אפסים (הנתונים נמחקו — לא נשמר), עצירה או ניתוק → 5.</li>
 </ul>
-<pre><code class="language-json">{ &quot;ok&quot;: true, &quot;command&quot;: &quot;recover&quot;, &quot;exitCode&quot;: 0, &quot;dryRun&quot;: false,
-  &quot;source&quot;: { &quot;text&quot;: &quot;card.img&quot;, &quot;kind&quot;: &quot;image&quot;, &quot;name&quot;: &quot;card.img&quot;, &quot;mode&quot;: &quot;quick&quot;, &quot;plan&quot;: &quot;quick&quot;, &quot;available&quot;: true },
-  &quot;filter&quot;: { &quot;include&quot;: [ &quot;*.jpg&quot; ], &quot;types&quot;: [], &quot;status&quot;: [ &quot;intact&quot; ], &quot;deletedOnly&quot;: true },
-  &quot;scanned&quot;: 12, &quot;matched&quot;: 4, &quot;bytes&quot;: 323226, &quot;destination&quot;: &quot;D:\rec&quot;,
-  &quot;written&quot;: 4, &quot;failed&quot;: 0, &quot;partial&quot;: 0, &quot;zeroFiles&quot;: 0, &quot;badSectors&quot;: 0, &quot;bytesWritten&quot;: 323226,
-  &quot;cancelled&quot;: false, &quot;disconnected&quot;: false,
-  &quot;reportPath&quot;: &quot;D:\rec\Recovery report.txt&quot;, &quot;csvPath&quot;: &quot;D:\rec\Recovered files.csv&quot;,
-  &quot;summaries&quot;: { &quot;html&quot;: &quot;D:\rec\Recovery summary.html&quot;, &quot;...&quot;: &quot;...&quot; }, &quot;failures&quot;: [], &quot;warnings&quot;: [] }
-</code></pre>
+<details class="json"><summary>דוגמת תשובה ב-JSON</summary><pre><code class="language-json">{ "ok": true, "command": "recover", "exitCode": 0, "dryRun": false,
+  "source": { "text": "card.img", "kind": "image", "name": "card.img", "mode": "quick", "plan": "quick", "available": true },
+  "filter": { "include": [ "*.jpg" ], "types": [], "status": [ "intact" ], "deletedOnly": true },
+  "scanned": 12, "matched": 4, "bytes": 323226, "destination": "D:\\rec",
+  "written": 4, "failed": 0, "partial": 0, "zeroFiles": 0, "badSectors": 0, "bytesWritten": 323226,
+  "cancelled": false, "disconnected": false,
+  "reportPath": "D:\\rec\\Recovery report.txt", "csvPath": "D:\\rec\\Recovered files.csv",
+  "summaries": { "html": "D:\\rec\\Recovery summary.html", "...": "..." }, "failures": [], "warnings": [] }
+</code></pre></details>
 <p>ה-CSV (<code>csvPath</code>): <code>Original file, Recovered file, Size (bytes), SHA-256, State</code> — הנתיב השני יחסי ל-<code>--to</code>.</p>
-<h3><code>cli doctor &lt;file...&gt; [--repair --to &lt;folder&gt;]</code></h3>
+</section><section class="cmd"><h3 id="cmd-doctor"><code><span class="w">cli</span> <span class="w">doctor</span> <span class="w">&lt;file...&gt;</span> <span class="w">[--repair</span> <span class="w">--to</span> <span class="w">&lt;folder&gt;]</span></code></h3>
 <p>רופא הקבצים: לכל קובץ <code>verdict</code> (<code>healthy</code>, <code>truncated</code>, <code>broken</code>, <code>overwritten</code>, <code>codec</code>, <code>container</code>,
 <code>unknown</code>), משפט, הסיבה והפרטים, ו-<code>canRepair</code>. עם <code>--repair</code> הקבצים שאפשר לתקן נבנים מחדש לתוך <code>--to</code>
 (<code>repaired</code>, <code>partial</code>, <code>notRepaired</code> לכל קובץ, ו-<code>outputFiles</code>). <strong>הקבצים המקוריים רק נקראים</strong> — עותק מתוקן הוא
 תמיד קובץ חדש (שם תפוס מקבל « (2)»). אין מה לתקן → 3; קובץ שלא נקרא או תיקון שנכשל → 5.</p>
-<pre><code class="language-json">{ &quot;ok&quot;: true, &quot;command&quot;: &quot;doctor&quot;, &quot;exitCode&quot;: 0,
-  &quot;files&quot;: [ { &quot;path&quot;: &quot;D:\rec\song.amr&quot;, &quot;name&quot;: &quot;song.amr&quot;, &quot;verdict&quot;: &quot;broken&quot;, &quot;verdictText&quot;: &quot;Damaged — can be repaired&quot;,
-               &quot;canRepair&quot;: true, &quot;format&quot;: &quot;amr&quot;, &quot;reason&quot;: &quot;After 6 seconds of valid audio there are 8 KB ...&quot;, &quot;details&quot;: [], &quot;readError&quot;: false } ],
-  &quot;repairable&quot;: 1,
-  &quot;repair&quot;: { &quot;destination&quot;: &quot;D:\fixed&quot;, &quot;stopped&quot;: false, &quot;repaired&quot;: 1, &quot;partial&quot;: 0, &quot;failed&quot;: 0,
-              &quot;results&quot;: [ { &quot;path&quot;: &quot;D:\rec\song.amr&quot;, &quot;outcome&quot;: &quot;repaired&quot;, &quot;summary&quot;: &quot;...&quot;,
-                             &quot;outputFiles&quot;: [ &quot;D:\fixed\song.repaired.amr&quot; ], &quot;actions&quot;: [ &quot;...&quot; ], &quot;lost&quot;: [] } ] },
-  &quot;warnings&quot;: [] }
-</code></pre>
-<h2>הרשאות מנהל</h2>
+<details class="json"><summary>דוגמת תשובה ב-JSON</summary><pre><code class="language-json">{ "ok": true, "command": "doctor", "exitCode": 0,
+  "files": [ { "path": "D:\\rec\\song.amr", "name": "song.amr", "verdict": "broken", "verdictText": "Damaged — can be repaired",
+               "canRepair": true, "format": "amr", "reason": "After 6 seconds of valid audio there are 8 KB ...", "details": [], "readError": false } ],
+  "repairable": 1,
+  "repair": { "destination": "D:\\fixed", "stopped": false, "repaired": 1, "partial": 0, "failed": 0,
+              "results": [ { "path": "D:\\rec\\song.amr", "outcome": "repaired", "summary": "...",
+                             "outputFiles": [ "D:\\fixed\\song.repaired.amr" ], "actions": [ "..." ], "lost": [] } ] },
+  "warnings": [] }
+</code></pre></details>
+</section><h2 id="s7">הרשאות מנהל</h2>
 <ul>
 <li>כונן לפי אות (<code>E:</code>) ודיסק פיזי (<code>disk:N</code>) נקראים רק כמנהל — Windows לא נותן לקרוא דיסק אחרת. פותחים
   «שורת הפקודה (מנהל)» או PowerShell כמנהל ומריצים משם. ה-CLI לא מבקש הרשאות בעצמו.</li>
 <li><code>drives</code> עובד גם בלי; רק SMART לרוב לא זמין.</li>
 <li>סריקה שמורה של כונן צריכה הרשאות מנהל כדי לפתוח שוב את הכונן (בלעדיהן: <code>--dry-run</code> מציג את הרשימה עם אזהרה).</li>
 </ul>
-<h2 dir="ltr" lang="en">For AI tools (English summary)</h2><div dir="ltr" lang="en">
-<p><code>IsraRecover.exe cli &lt;command&gt; [options] --json</code> prints exactly one JSON object to stdout; progress and warnings go
+<h2 dir="ltr" id="s8" lang="en">For AI tools (English summary)</h2><div dir="ltr" lang="en"><p><code>IsraRecover.exe cli &lt;command&gt; [options] --json</code> prints exactly one JSON object to stdout; progress and warnings go
 to stderr. Commands: <code>version</code>, <code>help [command]</code>, <code>drives</code>, <code>check &lt;source&gt;</code>, <code>scan &lt;source&gt; [--mode auto|quick|deep|signatures]
 [--save f.rscan] [--list f.csv|f.json]</code>, <code>recover &lt;source|f.rscan&gt; --to &lt;dir&gt; [--include glob] [--type ext,...]
 [--status intact|partial|overwritten|not-checked|any] [--deleted-only] [--dry-run]</code>, <code>doctor &lt;file...&gt; [--repair --to &lt;dir&gt;]</code>.
-A source is <code>E:</code>, <code>disk:N</code>, or an image file (IMG/VHD/VHDX/VMDK/E01).</p>
-<p>Exit codes: 0 ok · 1 usage · 2 source not found / cannot open · 3 nothing found · 4 refused (destination on the scanned
+A source is <code>E:</code>, <code>disk:N</code>, or an image file (IMG/VHD/VHDX/VMDK/E01).</p><p>Exit codes: 0 ok · 1 usage · 2 source not found / cannot open · 3 nothing found · 4 refused (destination on the scanned
 drive, <code>needs_admin</code>, <code>image_first</code>, <code>lab</code>, <code>bitlocker</code>, <code>low_space</code>) · 5 finished with errors (failed files, Ctrl+C,
-disconnect). Failure: <code>{"ok": false, "exitCode": N, "error": {"code": "...", "message": "..."}}</code>.</p>
-<p>Read-only guarantee: nothing is ever written to the source; only <code>--to</code>, <code>--save</code>, <code>--list</code> are written, and a target on
+disconnect). Failure: <code>{"ok": false, "exitCode": N, "error": {"code": "...", "message": "..."}}</code>.</p><p>Read-only guarantee: nothing is ever written to the source; only <code>--to</code>, <code>--save</code>, <code>--list</code> are written, and a target on
 the scanned drive is refused. Drive repair, driver switch, device cleanup, card test and imaging are not in the CLI.
 Drive letters and disks need an elevated prompt; the CLI never self-elevates. The exe is a GUI-subsystem program: from
 PowerShell pipe it (<code>&amp; IsraRecover.exe cli drives --json | Out-String | ConvertFrom-Json</code>, after
 <code>[Console]::OutputEncoding = [Text.Encoding]::UTF8</code>), or run it through <code>cmd /c "... &gt; out.json"</code>; cmd, bash and
 subprocess APIs that redirect stdout wait for it and get the exit code.</p></div>
+
+
+
 </main>
 <footer>
   <p><b>IsraRecover</b> מבית Sync Up · <a href="./">דף הבית</a> · <a href="https://github.com/bot-sync-up/israrecover/releases" rel="noopener">כל הגרסאות</a></p>
 </footer>
 </div>
+<script>
+// «העתק» next to every command: the quick-start table's commands and each code block
+for (const code of document.querySelectorAll(".doc table.quick td code, .doc pre > code")) {
+  const button = document.createElement("button");
+  button.type = "button";
+  button.className = "copy";
+  button.textContent = "העתק";
+  button.addEventListener("click", async () => {
+    try { await navigator.clipboard.writeText(code.textContent.trim()); button.textContent = "הועתק"; }
+    catch { button.textContent = "לא הועתק"; }
+    setTimeout(() => { button.textContent = "העתק"; }, 1600);
+  });
+  (code.closest("pre") || code.parentElement).append(button);
+}
+</script>
 </body>
 </html>
