@@ -217,13 +217,18 @@ footer a { color: var(--accent-strong); }
 .doc .cmd h3 { margin: 0; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
 .doc .cmd h3 code { text-align: left; font-size: 1rem; padding: 6px 12px; display: inline-block; background: var(--accent); color: var(--on-accent); }
 .doc .cmd pre { background: var(--bg); }
-.doc details.json summary { cursor: pointer; width: fit-content; color: var(--accent-strong); font-weight: 500; }
-.doc details.json[open] summary { margin-block-end: 8px; }
+.doc details.more { border-block-start: 1px dashed var(--line); padding-block-start: 10px; min-width: 0; }
+.doc details.more > :not(summary) { margin-block-start: 12px; }
+.doc details.more summary { cursor: pointer; width: fit-content; color: var(--accent-strong); font-weight: 500; }
+.btn-small { min-height: 42px; padding: 0 20px; font-size: 0.97rem; }
+.doc .btn { width: fit-content; }
 .doc pre { position: relative; }
 .doc .copy { font: inherit; font-size: 0.82rem; padding: 2px 10px; margin-inline-start: 8px; border-radius: 999px; border: 1px solid var(--line); background: var(--surface); color: var(--accent-strong); cursor: pointer; vertical-align: middle; }
 .doc .copy:hover { border-color: var(--accent); }
-.doc pre:has(> .copy) { padding-block-start: 40px; } /* the button sits above the first line, never over a long one */
-.doc pre .copy { position: absolute; inset-block-start: 8px; inset-inline-end: 8px; margin: 0; font-family: var(--font); }
+.doc pre:has(> .copy) { display: flex; align-items: flex-start; gap: 12px; overflow: hidden; } /* the code scrolls in its own box; the button beside it never covers a long line */
+.doc pre:has(> .copy) > code { flex: 1; min-width: 0; display: block; overflow-x: auto; }
+.doc pre.wrap > code { white-space: pre-wrap; overflow-wrap: anywhere; }
+.doc pre .copy { flex: none; margin: 0; font-family: var(--font); }
 
 /* the command line: a band on the landing page, the hero of cli.html */
 .cli-band { position: relative; overflow: hidden; display: grid; gap: 32px; align-items: center; padding: clamp(26px, 4.5vw, 56px); border-radius: var(--radius-lg); background: linear-gradient(160deg, var(--hero) 0%, var(--hero-2) 100%); color: var(--hero-text); box-shadow: var(--shadow); }
