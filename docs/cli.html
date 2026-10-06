@@ -10,7 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap">
-<link rel="stylesheet" href="site.css?v=c41b1c0954">
+<link rel="stylesheet" href="site.css?v=9b415f4abb">
 </head>
 <body>
 <a class="skip" href="#main">דלג לתוכן</a>
@@ -57,7 +57,7 @@
 <div class="doc">
 
 
-<nav aria-label="בדף הזה" class="toc"><a href="#s1">התחלה מהירה</a><a href="#s2">הבטחות</a><a href="#s3">איך סוכן AI משתמש בזה</a><a href="#s4">קודי יציאה</a><a href="#s5">מבנה התשובה</a><a href="#s6">הפקודות</a><a class="sub" dir="ltr" href="#cmd-version">version</a><a class="sub" dir="ltr" href="#cmd-drives">drives</a><a class="sub" dir="ltr" href="#cmd-check">check</a><a class="sub" dir="ltr" href="#cmd-scan">scan</a><a class="sub" dir="ltr" href="#cmd-recover">recover</a><a class="sub" dir="ltr" href="#cmd-doctor">doctor</a><a href="#s7">הרשאות מנהל</a><a href="#s8">For AI tools (English summary)</a></nav><h2 id="s1">התחלה מהירה</h2>
+<nav aria-label="בדף הזה" class="toc"><a href="#s1">התחלה מהירה</a><a href="#s2">התקנה משורת הפקודה</a><a href="#s3">הבטחות</a><a href="#s4">איך סוכן AI משתמש בזה</a><a href="#s5">קודי יציאה</a><a href="#s6">מבנה התשובה</a><a href="#s7">הפקודות</a><a class="sub" dir="ltr" href="#cmd-version">version</a><a class="sub" dir="ltr" href="#cmd-drives">drives</a><a class="sub" dir="ltr" href="#cmd-check">check</a><a class="sub" dir="ltr" href="#cmd-scan">scan</a><a class="sub" dir="ltr" href="#cmd-recover">recover</a><a class="sub" dir="ltr" href="#cmd-doctor">doctor</a><a href="#s8">הרשאות מנהל</a><a href="#s9">For AI tools (English summary)</a></nav><h2 id="s1">התחלה מהירה</h2>
 <p><strong>1. פותחים חלון cmd.</strong> בתפריט «התחל» מקלידים <code>cmd</code>. כדי לסרוק כונן לפי אות צריך הרשאות מנהל: לוחצים על
 «שורת הפקודה» בכפתור הימני ← «הפעל כמנהל».</p>
 <p><strong>2. נכנסים לתיקייה של התוכנה:</strong></p>
@@ -106,7 +106,21 @@
 </table>
 <p><strong>למה צריך את <code>cmd /c</code>.</strong> ל-IsraRecover יש גם חלון, ולכן חלון cmd לא מחכה לה. בלי <code>cmd /c</code> שורת הפקודה חוזרת לפני
 שהתשובה מגיעה. בסקריפט, ב-Git Bash ובסוכן AI אין צורך בזה (הפירוט למטה), ומוסיפים <code>--json</code> כדי לקבל את התשובה כ-JSON.</p>
-<h2 id="s2">הבטחות</h2>
+<h2 id="s2">התקנה משורת הפקודה</h2>
+<p>בחלון cmd שנפתח כמנהל. ההתקנה שקטה, בלי חלונות ובלי שאלות:</p>
+<pre><code>curl.exe -L -o IsraRecover-setup.exe https://github.com/bot-sync-up/israrecover/releases/latest/download/IsraRecover-setup.exe
+IsraRecover-setup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+</code></pre>
+<p>התוכנה מותקנת ב-<code>C:\Program Files\IsraRecover</code>, וקוד יציאה 0 אומר שההתקנה הצליחה. אפשר להוסיף <code>/LOG=install.log</code>
+כדי לשמור יומן של ההתקנה. הקישור מוריד תמיד את הגרסה האחרונה.</p>
+<p><strong>בלי התקנה:</strong> מורידים את הגרסה הניידת ומריצים אותה ישר מהתיקייה שבה היא נשמרה.</p>
+<pre><code>curl.exe -L -o IsraRecover.exe https://github.com/bot-sync-up/israrecover/releases/latest/download/IsraRecover-portable.exe
+cmd /c IsraRecover.exe cli drives
+</code></pre>
+<p><strong>הסרה שקטה:</strong></p>
+<pre><code>"C:\Program Files\IsraRecover\unins000.exe" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART
+</code></pre>
+<h2 id="s3">הבטחות</h2>
 <ul>
 <li><strong>קריאה בלבד מהמקור.</strong> ה-CLI לא כותב אף פעם לכונן או לקובץ התמונה שנסרקים. הוא כותב רק ליעדים שנתתם:
   <code>--to</code>, <code>--save</code>, <code>--list</code>. יעד שנמצא על הכונן שנסרק (או שהוא קובץ התמונה עצמו) נחסם — קוד יציאה 4.</li>
@@ -116,7 +130,7 @@
   הקוד <code>needs_admin</code> (יציאה 4) ולא מבקשת UAC בעצמה. קובצי תמונה וסריקות שמורות עובדים בלי הרשאות מנהל.</li>
 <li><strong>בלי ההגדרות של המשתמש.</strong> ה-CLI לא קורא ולא כותב את הגדרות התוכנה. הפלט שלו באנגלית.</li>
 </ul>
-<h2 id="s3">איך סוכן AI משתמש בזה</h2>
+<h2 id="s4">איך סוכן AI משתמש בזה</h2>
 <ol>
 <li>מריצים עם <code>--json</code>. ב-stdout יוצא <strong>מסמך JSON אחד בדיוק</strong>; ההתקדמות והאזהרות יוצאות ל-stderr.</li>
 <li>בודקים את קוד היציאה (הטבלה למטה) ואת <code>ok</code>. כשיש תקלה יש <code>error.code</code> (מילה קבועה) ו-<code>error.message</code> (משפט באנגלית).</li>
@@ -161,7 +175,7 @@
 </table>
 <p>הפלט ל-stdout ול-stderr הוא UTF-8 בלי BOM כשהוא מנותב לקובץ או לצינור, ויוניקוד ישיר כשהוא מוצג בקונסולה.
 Ctrl+C עוצר את הסריקה או השחזור בצורה מסודרת: התשובה עדיין נכתבת, <code>cancelled: true</code>, וקוד היציאה 5.</p>
-<h2 id="s4">קודי יציאה</h2>
+<h2 id="s5">קודי יציאה</h2>
 <table>
 <thead>
 <tr>
@@ -206,7 +220,7 @@ Ctrl+C עוצר את הסריקה או השחזור בצורה מסודרת: ה�
 <p><strong>קודי שגיאה</strong> (<code>error.code</code>): <code>usage</code>, <code>bad_source</code>, <code>source_not_found</code>, <code>open_failed</code>, <code>needs_admin</code>,
 <code>destination_on_source</code>, <code>low_space</code>, <code>destination_failed</code>, <code>image_first</code>, <code>lab</code>, <code>bitlocker</code>, <code>cancelled</code>,
 <code>failed</code> (תקלה לא צפויה — ההודעה כוללת את סוג החריגה).</p>
-<h2 id="s5">מבנה התשובה</h2>
+<h2 id="s6">מבנה התשובה</h2>
 <p>כל תשובה היא אובייקט אחד. מפתחות קבועים, camelCase. מפתחות חדשים יכולים להתווסף; שינוי שם או הסרה של מפתח
 יעלו את <code>formatVersion</code> (שמופיע ב-<code>cli version</code>).</p>
 <pre><code class="language-json">{ "ok": true, "command": "scan", "exitCode": 0, "...": "השדות של הפקודה", "warnings": [] }
@@ -215,7 +229,7 @@ Ctrl+C עוצר את הסריקה או השחזור בצורה מסודרת: ה�
 <p><code>ok</code> הוא <code>false</code> רק כשיש <code>error</code>. בקוד 3 ו-5 התשובה הרגילה מגיעה עם <code>ok: true</code> — קוד היציאה אומר את השאר.</p>
 <p><strong>מקור</strong> (<code>&lt;source&gt;</code>): אות כונן (<code>E:</code> — המחיצה הזאת בלבד), דיסק פיזי (<code>disk:2</code> או <code>\\.\PhysicalDrive2</code> — כל
 הדיסק), קובץ תמונה (IMG, VHD, VHDX, VMDK, E01 וכל מה שהמנוע פותח), או סריקה שמורה <code>.rscan</code> (רק ב-<code>recover</code>).</p>
-<h2 id="s6">הפקודות</h2>
+<h2 id="s7">הפקודות</h2>
 <section class="cmd"><h3 id="cmd-version"><code><span class="w">cli</span> <span class="w">version</span></code> · <code><span class="w">cli</span> <span class="w">help</span> <span class="w">[command]</span></code></h3>
 <p>גרסת התוכנה וגרסת פורמט ה-JSON; רשימת הפקודות, האפשרויות, קודי היציאה וההבטחות (גם ב-<code>--json</code>).</p>
 <details class="json"><summary>דוגמת תשובה ב-JSON</summary><pre><code class="language-json">{ "ok": true, "command": "version", "exitCode": 0, "name": "IsraRecover", "version": "1.0.1", "formatVersion": 1, "isAdmin": false, "warnings": [] }
@@ -307,18 +321,21 @@ SMART (<code>good</code>, <code>warning</code>, <code>bad</code>, <code>notAvail
                              "outputFiles": [ "D:\\fixed\\song.repaired.amr" ], "actions": [ "..." ], "lost": [] } ] },
   "warnings": [] }
 </code></pre></details>
-</section><h2 id="s7">הרשאות מנהל</h2>
+</section><h2 id="s8">הרשאות מנהל</h2>
 <ul>
 <li>כונן לפי אות (<code>E:</code>) ודיסק פיזי (<code>disk:N</code>) נקראים רק כמנהל — Windows לא נותן לקרוא דיסק אחרת. פותחים
   «שורת הפקודה (מנהל)» או PowerShell כמנהל ומריצים משם. ה-CLI לא מבקש הרשאות בעצמו.</li>
 <li><code>drives</code> עובד גם בלי; רק SMART לרוב לא זמין.</li>
 <li>סריקה שמורה של כונן צריכה הרשאות מנהל כדי לפתוח שוב את הכונן (בלעדיהן: <code>--dry-run</code> מציג את הרשימה עם אזהרה).</li>
 </ul>
-<h2 dir="ltr" id="s8" lang="en">For AI tools (English summary)</h2><div dir="ltr" lang="en"><p><code>IsraRecover.exe cli &lt;command&gt; [options] --json</code> prints exactly one JSON object to stdout; progress and warnings go
+<h2 dir="ltr" id="s9" lang="en">For AI tools (English summary)</h2><div dir="ltr" lang="en"><p><code>IsraRecover.exe cli &lt;command&gt; [options] --json</code> prints exactly one JSON object to stdout; progress and warnings go
 to stderr. Commands: <code>version</code>, <code>help [command]</code>, <code>drives</code>, <code>check &lt;source&gt;</code>, <code>scan &lt;source&gt; [--mode auto|quick|deep|signatures]
 [--save f.rscan] [--list f.csv|f.json]</code>, <code>recover &lt;source|f.rscan&gt; --to &lt;dir&gt; [--include glob] [--type ext,...]
 [--status intact|partial|overwritten|not-checked|any] [--deleted-only] [--dry-run]</code>, <code>doctor &lt;file...&gt; [--repair --to &lt;dir&gt;]</code>.
-A source is <code>E:</code>, <code>disk:N</code>, or an image file (IMG/VHD/VHDX/VMDK/E01).</p><p>Exit codes: 0 ok · 1 usage · 2 source not found / cannot open · 3 nothing found · 4 refused (destination on the scanned
+A source is <code>E:</code>, <code>disk:N</code>, or an image file (IMG/VHD/VHDX/VMDK/E01).</p><p>Unattended install (elevated cmd): <code>curl.exe -L -o IsraRecover-setup.exe https://github.com/bot-sync-up/israrecover/releases/latest/download/IsraRecover-setup.exe</code>,
+then <code>IsraRecover-setup.exe /VERYSILENT /SUPPRESSMSGBOXES /NORESTART</code> (installs to <code>C:\Program Files\IsraRecover</code>, exit 0 on success).
+Without installing: download <code>IsraRecover-portable.exe</code> from the same folder and run it directly. Silent uninstall:
+<code>"C:\Program Files\IsraRecover\unins000.exe" /VERYSILENT /SUPPRESSMSGBOXES /NORESTART</code>.</p><p>Exit codes: 0 ok · 1 usage · 2 source not found / cannot open · 3 nothing found · 4 refused (destination on the scanned
 drive, <code>needs_admin</code>, <code>image_first</code>, <code>lab</code>, <code>bitlocker</code>, <code>low_space</code>) · 5 finished with errors (failed files, Ctrl+C,
 disconnect). Failure: <code>{"ok": false, "exitCode": N, "error": {"code": "...", "message": "..."}}</code>.</p><p>Read-only guarantee: nothing is ever written to the source; only <code>--to</code>, <code>--save</code>, <code>--list</code> are written, and a target on
 the scanned drive is refused. Drive repair, driver switch, device cleanup, card test and imaging are not in the CLI.
@@ -326,6 +343,7 @@ Drive letters and disks need an elevated prompt; the CLI never self-elevates. Th
 PowerShell pipe it (<code>&amp; IsraRecover.exe cli drives --json | Out-String | ConvertFrom-Json</code>, after
 <code>[Console]::OutputEncoding = [Text.Encoding]::UTF8</code>), or run it through <code>cmd /c "... &gt; out.json"</code>; cmd, bash and
 subprocess APIs that redirect stdout wait for it and get the exit code.</p></div>
+
 
 
 
