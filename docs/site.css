@@ -178,3 +178,19 @@ footer { padding-block: 36px 48px; color: var(--muted); font-size: 0.95rem; disp
 footer a { color: var(--accent-strong); }
 .sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; } }
+
+/* the documentation page (cli.html, made from docs/CLI.md by installer/make-cli-page.py) */
+.doc { max-width: 56rem; padding-block: 12px 24px; display: grid; gap: 14px; }
+.doc > * { min-width: 0; } /* a grid item would otherwise grow to its widest table / code and widen the page */
+.doc h1 { font-size: clamp(1.8rem, 1.3rem + 2vw, 2.6rem); }
+.doc h2 { font-size: 1.5rem; margin-block-start: 22px; padding-block-start: 18px; border-block-start: 1px solid var(--line); }
+.doc h3 { font-size: 1.08rem; margin-block-start: 10px; }
+.doc p, .doc ul, .doc ol { margin: 0; }
+.doc ul, .doc ol { padding-inline-start: 1.4em; display: grid; gap: 4px; }
+.doc code { font-family: Consolas, "Cascadia Mono", monospace; font-size: 0.9em; background: var(--surface-2); padding: 1px 6px; border-radius: 6px; direction: ltr; unicode-bidi: isolate; white-space: nowrap; display: inline-block; max-width: 100%; overflow-x: auto; vertical-align: bottom; } /* a code never breaks (a broken one reorders inside Hebrew); a long one scrolls in its own box */
+.doc pre { direction: ltr; text-align: left; overflow-x: auto; margin: 0; padding: 14px 16px; background: var(--surface); border: 1px solid var(--line); border-radius: 12px; font-size: 0.85rem; line-height: 1.5; }
+.doc pre code { background: none; padding: 0; font-size: inherit; unicode-bidi: normal; white-space: pre; display: inline; max-width: none; overflow: visible; }
+.doc table { border-collapse: collapse; width: 100%; font-size: 0.95rem; display: block; overflow-x: auto; }
+.doc th, .doc td { border: 1px solid var(--line); padding: 7px 10px; text-align: start; vertical-align: top; }
+.doc th { background: var(--surface-2); }
+.doc [dir="ltr"] { text-align: left; }
