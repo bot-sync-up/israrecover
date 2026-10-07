@@ -1,0 +1,31 @@
+{
+  "tag_name": "v1.0.3",
+  "html_url": "https://github.com/bot-sync-up/israrecover/releases/tag/v1.0.3",
+  "body": "## כתב ויתור\n\nהתוכנה מסופקת כמות שהיא, ללא אחריות מכל סוג. השימוש בה — לרבות שחזור, תמונת כונן ותיקון כונן — הוא **על אחריות המשתמש בלבד**. Sync Up ומפתחיה לא יישאו בכל אחריות, ולא תעמוד נגדם כל תביעה, בגין אובדן נתונים, נזק לציוד או כל נזק אחר, ישיר או עקיף. השימוש בתוכנה מהווה הסכמה לתנאים אלה.\n\n## מה חדש ב-1.0.3\n\n- **עדכון אוטומטי בתוכנה מותקנת — תוקן.** מאז 0.10.1 תוכנה מותקנת אמרה «אין קובץ מתאים להתקנה». עכשיו היא מתעדכנת,\n  ובודקת עדכונים גם דרך האתר שלנו — כך שזה עובד גם ברשת מסוננת.\n- **בריאות הכונן.** כפתור חדש: מה הכונן מדווח על עצמו, ומשפט אחד — תקין, כדאי לגבות בקרוב, או לגבות עכשיו. עם בדיקת\n  קריאה של 30 שניות ומפה, ובדיקת כרטיס מזויף בלי לכתוב עליו.\n- **דיווח על תקלה.** מתוך התוכנה, עם שמות קבצים מוסתרים כברירת מחדל: מעתיקים ופותחים את הנושא בפורום, או דיווח בגיטהאב.\n- **«השמות הפכו לסימנים מוזרים».** אפשרות חדשה ב«מה קרה?», והבדיקה מזהה כרטיס כזה בעצמה. רשומות משובשות מוסתרות בתוצאות.\n- **המשך שחזור שנקטע** — בלי להתחיל מאפס ובלי עותקים כפולים.\n- **תיקון — «שחזור קבצי CHK»** סירב לכל תיקייה (דיווח מהפורום), ואותה תקלה ב«תקן» של רופא הקבצים.\n- **תיקון כונן בלי גיבוי** — אפשר להריץ chkdsk של Windows, אחרי אזהרה ואישור. בלי פרמוט, בשום מקום.\n- **רופא הקבצים** — תיקונים מבדיקה על קבצים אמיתיים: מסמך וורד שנחתך נפתח נקי, וקובץ שנפתח לא נקרא יותר «אי אפשר לתקן».\n- **עוד:** הגדלה עם Ctrl וגלגלת, סריקה שנתקעת מודיעה ורושמת למה, «יש עותק במקום אחר?» מראה קודם את מה ששייך לכונן שלך.\n\n### מה נבדק\n\nבדיקה עצמית על הקובץ הנייד עצמו 1242/1242. עדכון של התקנה למשתמש אחד ושל התקנה לכל המשתמשים נבדק ב-Windows Sandbox.\nהמסכים צולמו ונבדקו בשתי השפות, גם בהגדלה של 150% ו-200%.\n\n### דרישות\n\nWindows 10/11 x64 עם WebView2 Runtime (מותקן בכל Windows מעודכן; אם חסר, התוכנה מציגה קישור להתקנה).\n\n### קבצים\n\n- `IsraRecover-1.0.3-portable.exe` — קובץ יחיד, בלי התקנה, כולל .NET 8.\n- `IsraRecover-1.0.3-setup.exe` — מתקין (קיצור בתפריט התחל, הסרה, שיוך קובצי `.rscan`).\n- `SHA256SUMS.txt` — לאימות ההורדה.\n\nהקבצים אינם חתומים דיגיטלית; SmartScreen יזהיר בהפעלה הראשונה («מידע נוסף» → «הפעל בכל זאת»).\n",
+  "assets": [
+    {
+      "name": "IsraRecover-1.0.3-installed.exe",
+      "browser_download_url": "https://github.com/bot-sync-up/israrecover/releases/download/v1.0.3/IsraRecover-1.0.3-installed.exe"
+    },
+    {
+      "name": "IsraRecover-1.0.3-portable.exe",
+      "browser_download_url": "https://github.com/bot-sync-up/israrecover/releases/download/v1.0.3/IsraRecover-1.0.3-portable.exe"
+    },
+    {
+      "name": "IsraRecover-1.0.3-setup.exe",
+      "browser_download_url": "https://github.com/bot-sync-up/israrecover/releases/download/v1.0.3/IsraRecover-1.0.3-setup.exe"
+    },
+    {
+      "name": "IsraRecover-portable.exe",
+      "browser_download_url": "https://github.com/bot-sync-up/israrecover/releases/download/v1.0.3/IsraRecover-portable.exe"
+    },
+    {
+      "name": "IsraRecover-setup.exe",
+      "browser_download_url": "https://github.com/bot-sync-up/israrecover/releases/download/v1.0.3/IsraRecover-setup.exe"
+    },
+    {
+      "name": "SHA256SUMS.txt",
+      "browser_download_url": "https://github.com/bot-sync-up/israrecover/releases/download/v1.0.3/SHA256SUMS.txt"
+    }
+  ]
+}
