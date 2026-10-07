@@ -1,4 +1,4 @@
-# IsraRecover command line — guide for AI agents (version 1.0.2)
+# IsraRecover command line — guide for AI agents (version 1.0.3)
 
 IsraRecover is a free file-recovery program for Windows. Its command line runs the same drive check, scan,
 recovery and file doctor as the window, prints exactly one JSON document per command and uses fixed exit codes.
@@ -90,12 +90,13 @@ Recovers files with the program's own recovery: same folders, same report (CSV w
 - <source> is a drive letter (E:), a physical disk (disk:2 = \\.\PhysicalDrive2) or an image file (IMG, VHD, VHDX, VMDK, E01, ...).
 - A file known by name only (its data location is gone) is never recovered; it is left out of the list.
 
-### `cli doctor <file...> [--repair --to <folder>] [--json]`
+### `cli doctor <file...> [--repair --to <folder> [--sample <good file>]] [--json]`
 
 The file doctor's verdict for each file; with --repair the repairable ones are rebuilt into --to. The original files are never changed.
 
 - `--repair`: Write repaired copies of the repairable files into --to.
 - `--to` <value>: The folder for the repaired copies (needed with --repair).
+- `--sample` <value>: A good file from the same camera or app. Files marked needsSample (a video whose index is missing, a RAW, WAV or SQLite whose start is gone) are rebuilt from it.
 
 Common option: `--json` — Print exactly one JSON document to stdout (progress and warnings go to stderr).
 
