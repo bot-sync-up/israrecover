@@ -228,14 +228,18 @@ SMART (<code>good</code>, <code>warning</code>, <code>bad</code>, <code>notAvail
   "cancelled": false, "disconnected": false,
   "reportPath": "D:\\rec\\Recovery report.txt", "csvPath": "D:\\rec\\Recovered files.csv",
   "summaries": { "html": "D:\\rec\\Recovery summary.html", "...": "..." }, "failures": [], "warnings": [] }
-</code></pre><p>ה-CSV (<code>csvPath</code>): <code>Original file, Recovered file, Size (bytes), SHA-256, State</code> — הנתיב השני יחסי ל-<code>--to</code>.</p></details></section><section class="cmd"><h3 id="cmd-doctor"><code><span class="w">cli</span> <span class="w">doctor</span> <span class="w">&lt;file...&gt;</span> <span class="w">[--repair</span> <span class="w">--to</span> <span class="w">&lt;folder&gt;]</span></code></h3>
+</code></pre><p>ה-CSV (<code>csvPath</code>): <code>Original file, Recovered file, Size (bytes), SHA-256, State</code> — הנתיב השני יחסי ל-<code>--to</code>.</p></details></section><section class="cmd"><h3 id="cmd-doctor"><code><span class="w">cli</span> <span class="w">doctor</span> <span class="w">&lt;file...&gt;</span> <span class="w">[--repair</span> <span class="w">--to</span> <span class="w">&lt;folder&gt;</span> <span class="w">[--sample</span> <span class="w">&lt;good</span> <span class="w">file&gt;]]</span></code></h3>
 <p>בודקת קבצים שלא נפתחים, ומתקנת עותק שלהם לתיקייה אחרת.</p>
 <pre><code class="language-cmd">cmd /c IsraRecover.exe cli doctor D:\song.mp3 --repair --to D:\fixed
 </code></pre>
 
 
-<details class="more"><summary>כל האפשרויות והתשובה ב-JSON</summary><p>רופא הקבצים: לכל קובץ <code>verdict</code> (<code>healthy</code>, <code>truncated</code>, <code>broken</code>, <code>overwritten</code>, <code>codec</code>, <code>container</code>,
-<code>unknown</code>), משפט, הסיבה והפרטים, ו-<code>canRepair</code>. עם <code>--repair</code> הקבצים שאפשר לתקן נבנים מחדש לתוך <code>--to</code>
+
+<details class="more"><summary>כל האפשרויות והתשובה ב-JSON</summary><pre><code class="language-cmd">cmd /c IsraRecover.exe cli doctor D:\rec\MVI_0042.MP4 --repair --to D:\fixed --sample D:\camera\MVI_0041.MP4
+</code></pre><p>רופא הקבצים: לכל קובץ <code>verdict</code> (<code>healthy</code>, <code>erased</code> — נפתח, אבל קטע ממנו נמחק, <code>truncated</code>, <code>broken</code>, <code>overwritten</code>,
+<code>codec</code>, <code>container</code>, <code>unknown</code>), משפט, הסיבה והפרטים, <code>canRepair</code>, ו-<code>needsSample</code> — קובץ שאפשר לבנות מחדש רק בעזרת קובץ
+תקין מאותה מצלמה או תוכנה (סרטון שהאינדקס שלו נחתך, RAW / WAV / SQLite שההתחלה שלהם נמחקה). <code>--sample &lt;קובץ תקין&gt;</code> (עם
+<code>--repair</code>) בונה אותם מחדש מתוכו, כמו «בנה מחדש מקובץ תקין» בחלון. עם <code>--repair</code> הקבצים שאפשר לתקן נבנים מחדש לתוך <code>--to</code>
 (<code>repaired</code>, <code>partial</code>, <code>notRepaired</code> לכל קובץ, ו-<code>outputFiles</code>). <strong>הקבצים המקוריים רק נקראים</strong> — עותק מתוקן הוא
 תמיד קובץ חדש (שם תפוס מקבל « (2)»). אין מה לתקן → 3; קובץ שלא נקרא או תיקון שנכשל → 5.</p><pre><code class="language-json">{ "ok": true, "command": "doctor", "exitCode": 0,
   "files": [ { "path": "D:\\rec\\song.amr", "name": "song.amr", "verdict": "broken", "verdictText": "Damaged — can be repaired",
